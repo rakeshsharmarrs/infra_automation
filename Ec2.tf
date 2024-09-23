@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region     = "us-east-1"
 }
 
 # Create the EC2 instances for Jenkins-Master, build-slave, and ansible
