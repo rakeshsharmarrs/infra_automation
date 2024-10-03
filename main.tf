@@ -1,8 +1,8 @@
 provider "kubernetes" {
-  host  = var.ocp_url
-  token = var.ocp_token
-
-  load_config_file = false  # Disable automatic kubeconfig loading
+  host                   = var.ocp_url
+  token                  = var.ocp_token
+  insecure               = true  # Disables SSL certificate verification
+  load_config_file       = false # Disable automatic kubeconfig loading
 }
 
 resource "kubernetes_namespace" "nginx_namespace" {
@@ -50,4 +50,30 @@ resource "kubernetes_deployment" "nginx_deployment" {
             requests {
               memory = "256Mi"
               cpu    = "250m"
-        
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+resource "kubernetes_service" "nginx_service" {
+  metadata {
+    name      = "nginx-service"
+    namespace = kubernetes_namespace.nginx_namespace.metadata[0].name
+  }
+
+  spec {
+    selector = {
+      app = "nginx"
+    }
+
+    port {
+      port        = 80
+      target_port = 80
+    }
+
+    type = "ClusterIP"
+  }
+}
