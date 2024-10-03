@@ -12,8 +12,3 @@ variable "ocp_token" {
   description = "The token used to authenticate to OpenShift."
   type        = string
 }
-
-variable "cluster_ca_certificate" {
-  description = "The cluster's CA certificate in base64 format."
-  type        = string
-}
