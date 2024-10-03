@@ -1,14 +1,20 @@
-variable "namespace" {
-  description = "The namespace in which to install NGINX."
-  type        = string
-}
-
 variable "ocp_url" {
-  description = "The OpenShift API server URL."
+  description = "The URL of the OpenShift API (with https://)."
   type        = string
 }
 
-variable "ocp_token" {
-  description = "The token used to authenticate to OpenShift."
+variable "ocp_username" {
+  description = "Username for OpenShift authentication."
   type        = string
+}
+
+variable "ocp_password" {
+  description = "Password for OpenShift authentication."
+  type        = string
+}
+
+variable "namespace" {
+  description = "The namespace to deploy the application."
+  type        = string
+  default     = "default"
 }
