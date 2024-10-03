@@ -1,7 +1,8 @@
 provider "kubernetes" {
   host                   = var.ocp_url
-  token                  = var.ocp_token
-  insecure               = true  # Disables SSL certificate verification
+  username               = var.ocp_username
+  password               = var.ocp_password
+  insecure               = true  # Disable SSL verification
   load_config_file       = false # Disable automatic kubeconfig loading
 }
 
